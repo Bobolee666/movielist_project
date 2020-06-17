@@ -11,11 +11,10 @@ export default class Home extends Component {
       <div className="container">
         <div className="card-panel light-blue lighten-3 center">
           <h1 id="title" onClick={this.handleHomeClick}>
-            Movies List Menu
+            Movies List Menu{" "}
           </h1>
-
-          <h5>Welcome! this is da awesome home page</h5>
-        </div>
+          <h5> Welcome!this is da awesome home page </h5>{" "}
+        </div>{" "}
       </div>
     );
   }
