@@ -1,0 +1,16 @@
+.card-panel {
+  border-radius: 60px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+}
+
+#title {
+  font-family: "Itim", cursive;
+  cursor: pointer;
+}
+
+#title:hover {
+  text-shadow: 5px 5px 5px #797979;
+}
