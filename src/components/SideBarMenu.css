@@ -1,0 +1,41 @@
+#flyoutMenu {
+  width: 20vw;
+  height: 100vh;
+  background-color: #292929;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: scroll;
+  z-index: 1000;
+  transition: transform 0.5s;
+  -webkit-transition: transform 0.5s;
+  -moz-transition: transform 0.5s;
+  -ms-transition: transform 0.5s;
+  -o-transition: transform 0.5s;
+}
+
+#flyoutMenu.hidden {
+  transform: translate3d(-100vw, 0, 0);
+  -webkit-transform: translate3d(-100vw, 0, 0);
+  -moz-transform: translate3d(-100vw, 0, 0);
+  -ms-transform: translate3d(-100vw, 0, 0);
+  -o-transform: translate3d(-100vw, 0, 0);
+}
+
+#flyoutMenu.visible {
+  transform: translate3d(0vw, 0, 0);
+  overflow: hidden;
+  -webkit-transform: translate3d(0vw, 0, 0);
+  -moz-transform: translate3d(0vw, 0, 0);
+  -ms-transform: translate3d(0vw, 0, 0);
+  -o-transform: translate3d(0vw, 0, 0);
+}
+
+#flyoutMenu h2 a {
+  color: #333;
+  text-decoration: none;
+}
+
+#flyoutMenu h2 a:hover {
+  text-decoration: underline;
+}
