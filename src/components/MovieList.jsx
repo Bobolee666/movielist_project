@@ -51,6 +51,8 @@ export default class MovieList extends Component {
 
     return (
       <Fragment>
+        <button>Vote</button>
+        <button></button>
         <hr />
         <div id="pageBar">
           <button
