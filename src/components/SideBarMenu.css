@@ -1,12 +1,13 @@
 #flyoutMenu {
-  width: 20vw;
+  width: 30%;
   height: 100vh;
-  background-color: #292929;
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0;
   left: 0;
   overflow: scroll;
   z-index: 1000;
+  padding: 2% 0;
   transition: transform 0.5s;
   -webkit-transition: transform 0.5s;
   -moz-transition: transform 0.5s;
@@ -38,4 +39,14 @@
 
 #flyoutMenu h2 a:hover {
   text-decoration: underline;
+}
+
+.menuItem {
+  border-bottom: solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0;
+}
+
+.menuItem:hover {
+  background-color: rgba(0, 0, 0, 0.3);
 }
