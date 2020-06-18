@@ -52,20 +52,12 @@ export default class MovieList extends Component {
     return (
       <Fragment>
         <button>Vote</button>
-        <button></button>
+        <button>button</button>
         <hr />
         <div id="pageBar">
-          <button
-            onClick={() => this.setState({ page: page === 0 ? 500 : page - 1 })}
-          >
-            &lt;
-          </button>
+          <button onClick={() => this.setState({ page: page === 0 ? 500 : page - 1 })}>&lt;</button>
           <p> Page {" " + page + "/500"}</p>
-          <button
-            onClick={() => this.setState({ page: page === 500 ? 0 : page + 1 })}
-          >
-            &gt;
-          </button>
+          <button onClick={() => this.setState({ page: page === 500 ? 0 : page + 1 })}>&gt;</button>
         </div>
 
         <hr />
