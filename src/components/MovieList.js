@@ -110,30 +110,29 @@ export default class MovieList extends Component {
     console.log("Page", page, pageMovie);
     console.log("allMovie:  ", allMovie);
     return (
-      <Fragment>
-        <div id="searchContainer">
+      <Fragment className="container">
+        <div className="searchContainer">
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right"> arrow_upward </i>Title{" "}
-          </a>{" "}
+            Title<i className="material-icons right"> arrow_upward </i>
+          </a>
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right"> arrow_upward </i>Release Date{" "}
-          </a>{" "}
+            Release Date<i className="material-icons right"> arrow_upward </i>
+          </a>
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right"> arrow_upward </i>Vote Count{" "}
-          </a>{" "}
+            Vote Count <i className="material-icons right"> arrow_upward </i>
+          </a>
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right"> arrow_upward </i>Vote Average{" "}
-          </a>{" "}
+            Vote Average<i className="material-icons right"> arrow_upward </i>
+          </a>
         </div>
         <hr />
         <div id="pageBar">
-          <button onClick={this.goPre}> &lt; </button>{" "}
-          <p> Page {" " + page + "/500"} </p>{" "}
-          <button onClick={this.goNext}> &gt; </button>{" "}
+          <button onClick={this.goPre}> &lt; </button>
+          <p> Page {" " + page + "/500"} </p>
+          <button onClick={this.goNext}> &gt; </button>
         </div>
         <hr />
-        <div id="movieList">
-          {" "}
+        <div className="movieList">
           {pageMovie.map((movie) => (
             <MovieItem
               key={movie.id}
@@ -141,8 +140,8 @@ export default class MovieList extends Component {
               clickBlockBtn={this.clickBlockBtn}
               clickLikeBtn={this.clickLikeBtn}
             />
-          ))}{" "}
-        </div>{" "}
+          ))}
+        </div>
       </Fragment>
     );
   }
