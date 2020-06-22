@@ -1,5 +1,5 @@
 #flyoutMenu {
-  width: 30%;
+  width: 30vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
@@ -8,6 +8,7 @@
   overflow: scroll;
   z-index: 1000;
   padding: 2% 0;
+  text-align: center;
   transition: transform 0.5s;
   -webkit-transition: transform 0.5s;
   -moz-transition: transform 0.5s;
@@ -16,11 +17,11 @@
 }
 
 #flyoutMenu.hidden {
-  transform: translate3d(-100vw, 0, 0);
-  -webkit-transform: translate3d(-100vw, 0, 0);
-  -moz-transform: translate3d(-100vw, 0, 0);
-  -ms-transform: translate3d(-100vw, 0, 0);
-  -o-transform: translate3d(-100vw, 0, 0);
+  transform: translate3d(-30vw, 0, 0);
+  -webkit-transform: translate3d(-30vw, 0, 0);
+  -moz-transform: translate3d(-30vw, 0, 0);
+  -ms-transform: translate3d(-30vw, 0, 0);
+  -o-transform: translate3d(-30vw, 0, 0);
 }
 
 #flyoutMenu.visible {
@@ -32,16 +33,20 @@
   -o-transform: translate3d(0vw, 0, 0);
 }
 
-#flyoutMenu h2 a {
-  color: #333;
+#flyoutMenu a {
+  color: #fff;
+  font-family: sans-serif, Arial, Helvetica;
   text-decoration: none;
 }
 
-#flyoutMenu h2 a:hover {
+#flyoutMenu a:hover {
   text-decoration: underline;
 }
 
 .menuItem {
+  font-size: larger;
+  font-weight: bold;
+
   border-bottom: solid rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin: 0;
