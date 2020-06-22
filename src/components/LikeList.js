@@ -5,14 +5,13 @@ export default class LikeList extends Component {
     const { likedMovies } = this.props;
     return (
       <div id="likeMovie">
-            {likedMovies.map((movie) => (
-              <MovieItem
+        {/* {likedMovies.map((movie) => (
+              <
                 key={movie.id}
                 movie={movie}
                 clickBlockBtn={this.props.clickBlockBtn}
                 clickLikeBtn={this.props.clickLikeBtn}
-              />
-          
+              /> */}
       </div>
     );
   }
