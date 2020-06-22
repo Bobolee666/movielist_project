@@ -7,10 +7,15 @@ import SideBarMenu from "./components/SideBarMenu";
 import LikeList from "./components/LikeList";
 import BlockList from "./components/BlockList";
 
-
 class App extends Component {
   state = {
     visible: false,
+    likedMovies: [],
+    blockedMovies: [],
+    allMovie: [],
+    page: 1,
+    pageList: [],
+    pageMovie: [],
   };
 
   handleHomeClick(e) {
@@ -19,7 +24,114 @@ class App extends Component {
       visible: !this.state.visible,
     });
   }
+  clickLikeBtn = (id) => {
+    const newList = this.state.allMovie;
+
+    const likeItem = newList.filter((item) => {
+      if (item.id === id) {
+        item.isLike = !item.isLike;
+        return item;
+      }
+    });
+
+    this.setState({
+      allMovie: newList,
+      likedMovies: [...this.state.likedMovies, ...likeItem],
+    });
+  };
+
+  clickBlockBtn = (id) => {
+    const { allMovie, blockedMovies, pageMovie } = this.state;
+
+    const blockedItem = allMovie.filter((item) => {
+      if (item.id === id) {
+        item.isBlock = !item.isBlock;
+        return item;
+      }
+    });
+
+    this.setState({
+      allMovie: allMovie,
+      pageMovie: pageMovie.filter((item) => item.isBlock === false),
+      blockedMovies: [...blockedMovies, ...blockedItem],
+    });
+  };
+  componentDidMount = () => {
+    this.loadPageContent();
+  };
+
+  loadPageContent = () => {
+    const { page, pageList, allMovie } = this.state;
+
+    if (pageList.includes(page)) {
+      console.log("这里是if， allmovie shi", allMovie);
+      this.setState({
+        pageMovie: allMovie.slice((page - 1) * 10, 20 * page - 1),
+      });
+    } else {
+      fetch(
+        "https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8" +
+          "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=" +
+          page
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const list = this.createItems(data.results);
+          this.setState({
+            pageList: [...pageList, page],
+            pageMovie: [...list],
+            allMovie: [...allMovie, ...list],
+          });
+        });
+    }
+  };
+
+  createItems = (list) => {
+    let result = list.map((item) => {
+      return {
+        id: item.id,
+        title: item.original_title,
+        picture: item.poster_path,
+        isLike: false,
+        isBlock: false,
+        releaseDate: item.release_date,
+        voteCount: item.vote_count,
+        voteAve: item.vote_average,
+        description: item.overview,
+      };
+    });
+    return result;
+  };
+  goPre = () => {
+    const { page } = this.state;
+    this.setState(
+      {
+        page: page === 1 ? 500 : page - 1,
+      },
+      () => {
+        this.loadPageContent();
+      }
+    );
+  };
+  goNext = () => {
+    const { page } = this.state;
+    this.setState(
+      {
+        page: page === 500 ? 1 : page + 1,
+      },
+      () => {
+        this.loadPageContent();
+      }
+    );
+  };
   render() {
+    const {
+      page,
+      pageMovie,
+      allMovie,
+      likedMovies,
+      blockedMovies,
+    } = this.state;
     return (
       <Router>
         <SideBarMenu
@@ -38,13 +150,27 @@ class App extends Component {
                 <HomePage />
               </Route>
               <Route exact path="/movieslist">
-                <MovieList />
+                <MovieList
+                  page={page}
+                  pageMovie={pageMovie}
+                  allMovie={allMovie}
+                  likedMovies={likedMovies}
+                  blockedMovies={blockedMovies}
+                  clickBlockBtn={this.clickBlockBtn}
+                  clickLikeBtn={this.clickLikeBtn}
+                  goPre={this.goPre}
+                  goNext={this.goNext}
+                />
               </Route>
               <Route exact path="/likedlist">
-                <LikeList />
+                <LikeList
+                  likedMovies={likedMovies}
+                  clickBlockBtn={this.clickBlockBtn}
+                  clickLikeBtn={this.clickLikeBtn}
+                />
               </Route>
               <Route exact path="/blockedlist">
-                <BlockList />
+                <BlockList blockedMovies={blockedMovies} />
               </Route>
             </Switch>
           </div>
