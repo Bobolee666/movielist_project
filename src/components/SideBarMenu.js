@@ -16,6 +16,9 @@ class Menu extends Component {
     return (
       <>
         <div id="flyoutMenu" className={visibility}>
+          <div onClick={this.props.handleHomeClick}>
+            <i class="small material-icons cyan-text">clear</i>
+          </div>
           <div className="menuItem">
             <Link to="/">Home Page</Link>
           </div>

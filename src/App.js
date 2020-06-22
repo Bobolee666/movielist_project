@@ -13,20 +13,19 @@ class App extends Component {
     visible: false,
   };
 
-  toggleMenu() {
+  handleHomeClick(e) {
+    e.preventDefault();
     this.setState({
       visible: !this.state.visible,
     });
   }
-  handleHomeClick(e) {
-    e.preventDefault();
-    this.toggleMenu();
-    console.log(this.state.visible);
-  }
   render() {
     return (
       <Router>
-        <SideBarMenu visible={this.state.visible} onClick={this.handleHomeClick} />
+        <SideBarMenu
+          visible={this.state.visible}
+          handleHomeClick={(e) => this.handleHomeClick(e)}
+        />
 
         <div className="container">
           <div className="card-panel light-blue lighten-3 center">
