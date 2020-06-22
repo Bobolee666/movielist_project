@@ -59,15 +59,25 @@ export default class MovieList extends Component {
   };
   goPre = () => {
     const { page } = this.state;
-    this.setState({ page: page === 0 ? 500 : page - 1 }, () => {
-      this.loadPageContent();
-    });
+    this.setState(
+      {
+        page: page === 0 ? 500 : page - 1,
+      },
+      () => {
+        this.loadPageContent();
+      }
+    );
   };
   goNext = () => {
     const { page } = this.state;
-    this.setState({ page: page === 500 ? 0 : page + 1 }, () => {
-      this.loadPageContent();
-    });
+    this.setState(
+      {
+        page: page === 500 ? 0 : page + 1,
+      },
+      () => {
+        this.loadPageContent();
+      }
+    );
   };
   clickLikeBtn = (id) => {
     const newList = this.state.allMovie;
@@ -103,28 +113,27 @@ export default class MovieList extends Component {
       <Fragment>
         <div id="searchContainer">
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right">arrow_upward</i>Title
-          </a>
+            <i className="material-icons right"> arrow_upward </i>Title{" "}
+          </a>{" "}
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right">arrow_upward</i>Release Date
-          </a>
+            <i className="material-icons right"> arrow_upward </i>Release Date{" "}
+          </a>{" "}
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right">arrow_upward</i>Vote Count
-          </a>
+            <i className="material-icons right"> arrow_upward </i>Vote Count{" "}
+          </a>{" "}
           <a className="waves-effect waves-light btn">
-            <i className="material-icons right">arrow_upward</i>Vote Average
-          </a>
+            <i className="material-icons right"> arrow_upward </i>Vote Average{" "}
+          </a>{" "}
         </div>
-
         <hr />
         <div id="pageBar">
-          <button onClick={this.goPre}>&lt;</button>
-          <p> Page {" " + page + "/500"}</p>
-          <button onClick={this.goNext}>&gt;</button>
+          <button onClick={this.goPre}> &lt; </button>{" "}
+          <p> Page {" " + page + "/500"} </p>{" "}
+          <button onClick={this.goNext}> &gt; </button>{" "}
         </div>
-
         <hr />
         <div id="movieList">
+          {" "}
           {pageMovie.map((movie) => (
             <MovieItem
               key={movie.id}
@@ -132,8 +141,8 @@ export default class MovieList extends Component {
               clickBlockBtn={this.clickBlockBtn}
               clickLikeBtn={this.clickLikeBtn}
             />
-          ))}
-        </div>
+          ))}{" "}
+        </div>{" "}
       </Fragment>
     );
   }
