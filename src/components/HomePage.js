@@ -5,27 +5,7 @@ import "./HomePage.css";
 // import MovieList from "./MovieList";
 
 export default class Home extends Component {
-  // state = {
-  //   visible: false,
-  // };
-
-  // toggleMenu() {
-  //   this.setState({
-  //     visible: !this.state.visible,
-  //   });
-  // }
-  // handleHomeClick(e) {
-  //   e.preventDefault();
-  //   this.toggleMenu();
-  //   console.log("clicked");
-  // }
-
   render() {
-    // var visibility = "hidden";
-
-    // if (this.props.menuVisibility) {
-    //   visibility = "visible";
-    // }
     return (
       <div>
         <h6> Welcome!this is da awesome home page </h6>
