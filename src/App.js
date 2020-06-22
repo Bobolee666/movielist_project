@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import "./components/SideBarMenu.css";
 import HomePage from "./components/HomePage";
 import MovieList from "./components/MovieList";
 import SideBarMenu from "./components/SideBarMenu";
 import LikeList from "./components/LikeList";
 import BlockList from "./components/BlockList";
+
 
 class App extends Component {
   state = {
