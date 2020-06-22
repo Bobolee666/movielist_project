@@ -1,9 +1,27 @@
 .card {
-    width: 300px;
-    height: 400px;
+  width: 20%;
+  max-height: 20%;
+  margin: 1vw;
 }
 
 img {
-    width: 280px;
-    height: 300px;
+  width: 100%;
+  height: auto;
+}
+
+.card-content .card-title {
+  max-height: 10vh;
+  overflow: scroll;
+}
+.card-content i.material-icons {
+  position: relative;
+
+  top: 0;
+  left: 0;
+}
+
+i#more_vert.material-icons {
+  position: relative;
+  top: 0;
+  left: 0;
 }
