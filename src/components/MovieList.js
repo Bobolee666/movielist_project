@@ -12,10 +12,10 @@ export default class MovieList extends Component {
       likedMovies,
       blockedMovies,
     } = this.props;
-    // console.log("Page", page, pageMovie);
-    // console.log("allMovie:  ", allMovie);
-    // console.log("Liked:  ", likedMovies);
-    // console.log("blocked:  ", blockedMovies);
+    console.log("Page", page, pageMovie);
+    console.log("allMovie:  ", allMovie);
+    console.log("Liked:  ", likedMovies);
+    console.log("blocked:  ", blockedMovies);
     return (
       <Fragment>
         <div id="searchContainer">

@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import LikedItem from "./LikedItem";
 
 export default class LikeList extends Component {
   render() {
-    const { likedMovies } = this.props;
+    const { likedMovies, clickBlockBtn, clickLikeBtn } = this.props;
     return (
       <div id="likeMovie">
-        {/* {likedMovies.map((movie) => (
-              <
-                key={movie.id}
-                movie={movie}
-                clickBlockBtn={this.props.clickBlockBtn}
-                clickLikeBtn={this.props.clickLikeBtn}
-              /> */}
+        {likedMovies.map((movie) => (
+          <LikedItem
+            key={movie.id}
+            movie={movie}
+            clickBlockBtn={clickBlockBtn}
+            clickLikeBtn={clickLikeBtn}
+          />
+        ))}
       </div>
     );
   }

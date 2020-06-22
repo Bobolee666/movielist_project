@@ -163,7 +163,11 @@ class App extends Component {
                 />
               </Route>
               <Route exact path="/likedlist">
-                <LikeList likedMovies={likedMovies} />
+                <LikeList
+                  likedMovies={likedMovies}
+                  clickBlockBtn={this.clickBlockBtn}
+                  clickLikeBtn={this.clickLikeBtn}
+                />
               </Route>
               <Route exact path="/blockedlist">
                 <BlockList blockedMovies={blockedMovies} />
