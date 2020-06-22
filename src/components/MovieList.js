@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-const API_KEY = "76177c7fb779da86955a3e56aab3bcec";
+import React, { Component, Fragment } from "react";
+import "./MovieList.css";
+import MovieItem from "./MovieItem";
 
 export default class MovieList extends Component {
   state = {
