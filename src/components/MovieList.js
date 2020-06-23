@@ -14,26 +14,31 @@ export default class MovieList extends Component {
       <Fragment className="container">
         <div className="searchContainer">
           <a className="waves-effect waves-light btn">
-            Title <i className="material-icons right"> arrow_downward </i>{" "}
-          </a>{" "}
+            Title <i className="material-icons right"> arrow_downward </i>
+          </a>
           <a className="waves-effect waves-light btn">
-            Release Date <i className="material-icons right"> arrow_downward </i>{" "}
-          </a>{" "}
+            Release Date <i className="material-icons right"> arrow_downward </i>
+          </a>
           <a className="waves-effect waves-light btn">
-            Vote Count <i className="material-icons right"> arrow_downward </i>{" "}
-          </a>{" "}
+            Vote Count <i className="material-icons right"> arrow_downward </i>
+          </a>
           <a className="waves-effect waves-light btn">
-            Vote Average <i className="material-icons right"> arrow_downward </i>{" "}
-          </a>{" "}
-        </div>{" "}
+            Vote Average <i className="material-icons right"> arrow_downward </i>
+          </a>
+        </div>
+        <br />
         <hr />
         <div id="pageBar">
-          <button onClick={this.props.goPre}> &lt; </button> <p> Page {" " + page + "/500"} </p>{" "}
-          <button onClick={this.props.goNext}> &gt; </button>{" "}
-        </div>{" "}
+          <a class="btn-floating btn-large waves-effect waves-light " onClick={this.props.goPre}>
+            &lt;
+          </a>
+          <p> Page {" " + page + "/500"} </p>
+          <a class="btn-floating btn-large waves-effect waves-light " onClick={this.props.goNext}>
+            &gt;
+          </a>
+        </div>
         <hr />
         <div className="movieList">
-          {" "}
           {pageMovie.map((movie) => (
             <MovieItem
               key={movie.id}
@@ -41,8 +46,8 @@ export default class MovieList extends Component {
               clickBlockBtn={this.props.clickBlockBtn}
               clickLikeBtn={this.props.clickLikeBtn}
             />
-          ))}{" "}
-        </div>{" "}
+          ))}
+        </div>
       </Fragment>
     );
   }

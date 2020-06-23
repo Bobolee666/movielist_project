@@ -187,7 +187,7 @@ class App extends Component {
             <h3 id="title" onClick={(e) => this.handleHomeClick(e)}>
               Movies List Menu
             </h3>
-
+            <br />
             <Switch>
               <Route exact path="/">
                 <HomePage />
