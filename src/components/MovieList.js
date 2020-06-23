@@ -1,19 +1,11 @@
 import React, { Component, Fragment } from "react";
-import "./MovieList.css";
+import "./Lists.css";
 import MovieItem from "./MovieItem";
 
 export default class MovieList extends Component {
   render() {
     console.log(this.props);
-    const {
-      page,
-      pageMovie,
-      allMovie,
-      likedMovies,
-      blockedMovies,
-      sortBy,
-      order,
-    } = this.props;
+    const { page, pageMovie, allMovie, likedMovies, blockedMovies, sortBy, order } = this.props;
     console.log("Page", page, pageMovie);
     console.log("allMovie:  ", allMovie);
     console.log("Liked:  ", likedMovies);
@@ -25,21 +17,18 @@ export default class MovieList extends Component {
             Title <i className="material-icons right"> arrow_downward </i>{" "}
           </a>{" "}
           <a className="waves-effect waves-light btn">
-            Release Date{" "}
-            <i className="material-icons right"> arrow_downward </i>{" "}
+            Release Date <i className="material-icons right"> arrow_downward </i>{" "}
           </a>{" "}
           <a className="waves-effect waves-light btn">
             Vote Count <i className="material-icons right"> arrow_downward </i>{" "}
           </a>{" "}
           <a className="waves-effect waves-light btn">
-            Vote Average{" "}
-            <i className="material-icons right"> arrow_downward </i>{" "}
+            Vote Average <i className="material-icons right"> arrow_downward </i>{" "}
           </a>{" "}
         </div>{" "}
         <hr />
         <div id="pageBar">
-          <button onClick={this.props.goPre}> &lt; </button>{" "}
-          <p> Page {" " + page + "/500"} </p>{" "}
+          <button onClick={this.props.goPre}> &lt; </button> <p> Page {" " + page + "/500"} </p>{" "}
           <button onClick={this.props.goNext}> &gt; </button>{" "}
         </div>{" "}
         <hr />
