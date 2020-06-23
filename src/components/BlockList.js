@@ -1,11 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import BlockedItem from "./BlockedItem";
 
 export default class BlockList extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Block List</h1>
-            </div>
-        )
-    }
+  render() {
+    const { blockedMovies, clickBlockBtn, clickLikeBtn } = this.props;
+    return (
+      <div id="likeMovie">
+        {blockedMovies.map((movie) => (
+          <BlockedItem
+            key={movie.id}
+            movie={movie}
+            clickBlockBtn={clickBlockBtn}
+            clickLikeBtn={clickLikeBtn}
+          />
+        ))}
+      </div>
+    );
+  }
 }

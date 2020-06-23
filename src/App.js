@@ -16,6 +16,8 @@ class App extends Component {
     page: 1,
     pageList: [],
     pageMovie: [],
+    sortBy: "popularity",
+    order: "decs",
   };
 
   handleHomeClick(e) {
@@ -61,7 +63,7 @@ class App extends Component {
   };
 
   loadPageContent = () => {
-    const { page, pageList, allMovie } = this.state;
+    const { page, pageList, allMovie, sortBy, order } = this.state;
 
     if (pageList.includes(page)) {
       console.log("这里是if， allmovie shi", allMovie);
@@ -70,9 +72,7 @@ class App extends Component {
       });
     } else {
       fetch(
-        "https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8" +
-          "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=" +
-          page
+        `https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8&language=en-US&sort_by=original_${sortBy}.asc&include_adult=false&include_video=false&page=${page} `
       )
         .then((res) => res.json())
         .then((data) => {
@@ -131,6 +131,8 @@ class App extends Component {
       allMovie,
       likedMovies,
       blockedMovies,
+      sortBy,
+      order,
     } = this.state;
     return (
       <Router>
@@ -151,6 +153,8 @@ class App extends Component {
               </Route>
               <Route exact path="/movieslist">
                 <MovieList
+                  sortBy={sortBy}
+                  order={order}
                   page={page}
                   pageMovie={pageMovie}
                   allMovie={allMovie}
@@ -170,7 +174,11 @@ class App extends Component {
                 />
               </Route>
               <Route exact path="/blockedlist">
-                <BlockList blockedMovies={blockedMovies} />
+                <BlockList
+                  blockedMovies={blockedMovies}
+                  clickBlockBtn={this.clickBlockBtn}
+                  clickLikeBtn={this.clickLikeBtn}
+                />
               </Route>
             </Switch>
           </div>
