@@ -15,9 +15,10 @@ export default function LikedItem(props) {
         <div className="card-content liked-card">
           <div onClick={() => clickLikeBtn(movie.id)}>
             <i className="material-icons">delete_sweep</i>
+
           </div>
           <div onClick={() => clickBlockBtn(movie.id)}>
-            <i className="material-icons">block</i>
+            <i className="med material-icons">block</i>
           </div>
           <i className="material-icons"> more_vert </i>
         </div>

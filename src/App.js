@@ -41,6 +41,7 @@ class App extends Component {
       allMovie: newList,
       likedMovies: newList.filter((item) => item.isLike === true),
       blockedMovies: newList.filter((item) => item.isBlock === true),
+
     });
   };
 
