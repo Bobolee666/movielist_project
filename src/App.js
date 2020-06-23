@@ -26,6 +26,81 @@ class App extends Component {
       visible: !this.state.visible,
     });
   }
+
+  clickLikeBtn = (id) => {
+    const newList = this.state.allMovie;
+
+    newList.filter((item) => {
+      if (item.id === id) {
+        item.isLike = !item.isLike;
+        item.isBlock = false;
+        return item;
+      }
+    });
+
+    this.setState({
+      allMovie: newList,
+      likedMovies: newList.filter((item) => item.isLike === true),
+      blockedMovies: newList.filter((item) => item.isBlock === true),
+    });
+  };
+
+  clickBlockBtn = (id) => {
+    const { allMovie, pageMovie } = this.state;
+
+    allMovie.filter((item) => {
+      if (item.id === id) {
+        item.isBlock = !item.isBlock;
+        item.isLike = false;
+        return item;
+      }
+    });
+    console.log("111111");
+
+    this.setState({
+      allMovie: allMovie,
+      pageMovie: pageMovie.filter((item) => item.isBlock === false),
+      likedMovies: allMovie.filter((item) => item.isLike === true),
+      blockedMovies: allMovie.filter((item) => item.isBlock === true),
+    });
+  };
+
+  clickFav = (id) => {
+    const { allMovie, pageMovie, likedMovies } = this.state;
+
+    const likedItem = allMovie.filter((item) => {
+      if (item.id === id) {
+        item.isLike = !item.isLike;
+        item.isBlock = false;
+        return item;
+      }
+    });
+
+    this.setState({
+      allMovie: allMovie,
+      pageMovie: [...pageMovie, ...likedItem],
+      likedMovies: [...likedMovies, ...likedItem],
+      blockedMovies: allMovie.filter((item) => item.isBlock === true),
+    });
+  };
+
+  clickBlockDelete = (id) => {
+    const { allMovie, pageMovie } = this.state;
+
+    const blockedItem = allMovie.filter((item) => {
+      if (item.id === id) {
+        item.isBlock = !item.isBlock;
+        item.isLike = false;
+        return item;
+      }
+    });
+    this.setState({
+      allMovie: allMovie,
+      pageMovie: [...pageMovie, ...blockedItem],
+      blockedMovies: allMovie.filter((item) => item.isBlock === true),
+    });
+  };
+
   componentDidMount = () => {
     this.loadPageContent();
   };
@@ -226,6 +301,7 @@ class App extends Component {
       sortBy,
       order,
     } = this.state;
+    console.log("page movie", pageMovie);
     return (
       <Router>
         <SideBarMenu
@@ -271,8 +347,8 @@ class App extends Component {
               <Route exact path="/blockedlist">
                 <BlockList
                   blockedMovies={blockedMovies}
-                  clickBlockBtn={this.clickBlockBtn}
-                  clickLikeBtn={this.clickLikeBtn}
+                  clickBlockDelete={this.clickBlockDelete}
+                  clickFav={this.clickFav}
                 />
               </Route>
             </Switch>
