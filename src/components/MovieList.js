@@ -66,6 +66,7 @@ export default class MovieList extends Component {
     return (
       <Fragment className="container">
         <div className="searchContainer">
+
           {title ? (
             <a
               className="waves-effect waves-light btn"
@@ -140,7 +141,6 @@ export default class MovieList extends Component {
         </div>{" "}
         <hr />
         <div className="movieList">
-          {" "}
           {pageMovie.map((movie) => (
             <MovieItem
               key={movie.id}
@@ -148,8 +148,8 @@ export default class MovieList extends Component {
               clickBlockBtn={this.props.clickBlockBtn}
               clickLikeBtn={this.props.clickLikeBtn}
             />
-          ))}{" "}
-        </div>{" "}
+          ))}
+        </div>
       </Fragment>
     );
   }
