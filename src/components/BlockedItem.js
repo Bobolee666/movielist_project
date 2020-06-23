@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import "./MovieItem.css";
+import "./BlockItem.css";
 
 export default function BlockedItem(props) {
   const { movie, clickLikeBtn, clickBlockBtn } = props;
@@ -11,9 +12,9 @@ export default function BlockedItem(props) {
         <div className="card-image waves-effect waves-block waves-light">
           <img className="activator" src={url + movie.picture} />{" "}
         </div>{" "}
-        <div className="card-content">
+        <div className="card-content block-card">
           <div onClick={() => clickLikeBtn(movie.id)}>
-            <i className="large material-icons"> delete_sweep </i>{" "}
+            <i className="material-icons"> delete_sweep </i>{" "}
           </div>{" "}
           <div onClick={() => clickBlockBtn(movie.id)}>
             <i className="material-icons"> block </i>{" "}
