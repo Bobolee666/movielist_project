@@ -29,16 +29,17 @@ class App extends Component {
   clickLikeBtn = (id) => {
     const newList = this.state.allMovie;
 
-    const likeItem = newList.filter((item) => {
+    newList.filter((item) => {
       if (item.id === id) {
         item.isLike = !item.isLike;
+        item.isBlock = false;
         return item;
       }
     });
 
     this.setState({
       allMovie: newList,
-      likedMovies: [...this.state.likedMovies, ...likeItem],
+      likedMovies: newList.filter((item) => item.isLike === true),
     });
   };
 
@@ -48,6 +49,7 @@ class App extends Component {
     const blockedItem = allMovie.filter((item) => {
       if (item.id === id) {
         item.isBlock = !item.isBlock;
+        item.isLike = false;
         return item;
       }
     });
