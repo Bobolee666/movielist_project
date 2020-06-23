@@ -16,8 +16,8 @@ class App extends Component {
     page: 1,
     pageList: [],
     pageMovie: [],
-    sortBy: "popularity",
-    order: "decs",
+    sortBy: "primary_release_date",
+    order: "desc",
   };
 
   handleHomeClick(e) {
@@ -26,6 +26,51 @@ class App extends Component {
       visible: !this.state.visible,
     });
   }
+  componentDidMount = () => {
+    this.loadPageContent();
+  };
+
+  loadPageContent = () => {
+    const { page, pageList, allMovie, sortBy, order } = this.state;
+
+    if (pageList.includes(page)) {
+      console.log("这里是if， allmovie shi", allMovie);
+      this.setState({
+        pageMovie: allMovie.slice((page - 1) * 10, 20 * page - 1),
+      });
+    } else {
+      fetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8&language=en-US&sort_by=${sortBy}.${order}&include_adult=false&include_video=false&page=${page} `
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const list = this.createItems(data.results);
+          this.setState({
+            pageList: [...pageList, page],
+            pageMovie: [...list],
+            allMovie: [...allMovie, ...list],
+          });
+        });
+    }
+  };
+
+  createItems = (list) => {
+    let result = list.map((item) => {
+      return {
+        id: item.id,
+        title: item.original_title,
+        picture: item.poster_path,
+        isLike: false,
+        isBlock: false,
+        releaseDate: item.release_date,
+        voteCount: item.vote_count,
+        voteAve: item.vote_average,
+        description: item.overview,
+      };
+    });
+    return result;
+  };
+
   clickLikeBtn = (id) => {
     const newList = this.state.allMovie;
 
@@ -58,50 +103,7 @@ class App extends Component {
       blockedMovies: [...blockedMovies, ...blockedItem],
     });
   };
-  componentDidMount = () => {
-    this.loadPageContent();
-  };
 
-  loadPageContent = () => {
-    const { page, pageList, allMovie, sortBy, order } = this.state;
-
-    if (pageList.includes(page)) {
-      console.log("这里是if， allmovie shi", allMovie);
-      this.setState({
-        pageMovie: allMovie.slice((page - 1) * 10, 20 * page - 1),
-      });
-    } else {
-      fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8&language=en-US&sort_by=original_${sortBy}.asc&include_adult=false&include_video=false&page=${page} `
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          const list = this.createItems(data.results);
-          this.setState({
-            pageList: [...pageList, page],
-            pageMovie: [...list],
-            allMovie: [...allMovie, ...list],
-          });
-        });
-    }
-  };
-
-  createItems = (list) => {
-    let result = list.map((item) => {
-      return {
-        id: item.id,
-        title: item.original_title,
-        picture: item.poster_path,
-        isLike: false,
-        isBlock: false,
-        releaseDate: item.release_date,
-        voteCount: item.vote_count,
-        voteAve: item.vote_average,
-        description: item.overview,
-      };
-    });
-    return result;
-  };
   goPre = () => {
     const { page } = this.state;
     this.setState(
@@ -124,6 +126,96 @@ class App extends Component {
       }
     );
   };
+  sortByType = (sortType, dir) => {
+    console.log("111111", sortType, dir);
+    switch (sortType) {
+      case "original_title":
+        this.setState(
+          {
+            likedMovies: [],
+            blockedMovies: [],
+            allMovie: [],
+            page: 1,
+            pageList: [],
+            pageMovie: [],
+            sortBy: "original_title",
+            order: dir,
+          },
+          () => {
+            this.loadPageContent();
+          }
+        );
+        break;
+      case "primary_release_date":
+        this.setState(
+          {
+            likedMovies: [],
+            blockedMovies: [],
+            allMovie: [],
+            page: 1,
+            pageList: [],
+            pageMovie: [],
+            sortBy: "primary_release_date",
+            order: dir,
+          },
+          () => {
+            this.loadPageContent();
+          }
+        );
+        break;
+      case "vote_count":
+        this.setState(
+          {
+            likedMovies: [],
+            blockedMovies: [],
+            allMovie: [],
+            page: 1,
+            pageList: [],
+            pageMovie: [],
+            sortBy: "vote_count",
+            order: dir,
+          },
+          () => {
+            this.loadPageContent();
+          }
+        );
+        break;
+      case "vote_average":
+        this.setState(
+          {
+            likedMovies: [],
+            blockedMovies: [],
+            allMovie: [],
+            page: 1,
+            pageList: [],
+            pageMovie: [],
+            sortBy: "vote_average",
+            order: dir,
+          },
+          () => {
+            this.loadPageContent();
+          }
+        );
+        break;
+      default:
+        this.setState(
+          {
+            likedMovies: [],
+            blockedMovies: [],
+            allMovie: [],
+            page: 1,
+            pageList: [],
+            pageMovie: [],
+            sortBy: "popularity",
+            order: dir,
+          },
+          () => {
+            this.loadPageContent();
+          }
+        );
+    }
+  };
+
   render() {
     const {
       page,
@@ -162,6 +254,9 @@ class App extends Component {
                   blockedMovies={blockedMovies}
                   clickBlockBtn={this.clickBlockBtn}
                   clickLikeBtn={this.clickLikeBtn}
+                  sortByType={(sortType, order) =>
+                    this.sortByType(sortType, order)
+                  }
                   goPre={this.goPre}
                   goNext={this.goNext}
                 />
