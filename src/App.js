@@ -167,24 +167,22 @@ class App extends Component {
     );
   };
   render() {
-    const {
-      page,
-      pageMovie,
-      allMovie,
-      likedMovies,
-      blockedMovies,
-      sortBy,
-      order,
-    } = this.state;
+    const { page, pageMovie, allMovie, likedMovies, blockedMovies, sortBy, order } = this.state;
     console.log("page movie", pageMovie);
     return (
       <Router>
+        <div className="goTop">
+          <a href="#top">
+            <i class="medium material-icons white-text waves-effect waves-light">arrow_upward</i>
+          </a>
+        </div>
+
         <SideBarMenu
           visible={this.state.visible}
           handleHomeClick={(e) => this.handleHomeClick(e)}
         />
 
-        <div className="container">
+        <div className="container" id="top">
           <div className="card-panel light-blue lighten-3 center">
             <h3 id="title" onClick={(e) => this.handleHomeClick(e)}>
               Movies List Menu
