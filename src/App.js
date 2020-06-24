@@ -30,19 +30,18 @@ class App extends Component {
   clickLikeBtn = (id) => {
     const newList = this.state.allMovie;
 
-    newList.filter((item) => {
+    newList.map((item) => {
       if (item.id === id) {
         item.isLike = !item.isLike;
         item.isBlock = false;
-        return item;
       }
+      // return item;
     });
 
     this.setState({
       allMovie: newList,
       likedMovies: newList.filter((item) => item.isLike === true),
       blockedMovies: newList.filter((item) => item.isBlock === true),
-
     });
   };
 
@@ -147,38 +146,38 @@ class App extends Component {
     return result;
   };
 
-  clickLikeBtn = (id) => {
-    const newList = this.state.allMovie;
+  // clickLikeBtn = (id) => {
+  //   const newList = this.state.allMovie;
 
-    const likeItem = newList.filter((item) => {
-      if (item.id === id) {
-        item.isLike = !item.isLike;
-        return item;
-      }
-    });
+  //   const likeItem = newList.filter((item) => {
+  //     if (item.id === id) {
+  //       item.isLike = !item.isLike;
+  //       return item;
+  //     }
+  //   });
 
-    this.setState({
-      allMovie: newList,
-      likedMovies: [...this.state.likedMovies, ...likeItem],
-    });
-  };
+  //   this.setState({
+  //     allMovie: newList,
+  //     likedMovies: [...this.state.likedMovies, ...likeItem],
+  //   });
+  // };
 
-  clickBlockBtn = (id) => {
-    const { allMovie, blockedMovies, pageMovie } = this.state;
+  // clickBlockBtn = (id) => {
+  //   const { allMovie, blockedMovies, pageMovie } = this.state;
 
-    const blockedItem = allMovie.filter((item) => {
-      if (item.id === id) {
-        item.isBlock = !item.isBlock;
-        return item;
-      }
-    });
+  //   const blockedItem = allMovie.filter((item) => {
+  //     if (item.id === id) {
+  //       item.isBlock = !item.isBlock;
+  //       return item;
+  //     }
+  //   });
 
-    this.setState({
-      allMovie: allMovie,
-      pageMovie: pageMovie.filter((item) => item.isBlock === false),
-      blockedMovies: [...blockedMovies, ...blockedItem],
-    });
-  };
+  //   this.setState({
+  //     allMovie: allMovie,
+  //     pageMovie: pageMovie.filter((item) => item.isBlock === false),
+  //     blockedMovies: [...blockedMovies, ...blockedItem],
+  //   });
+  // };
 
   goPre = () => {
     const { page } = this.state;
@@ -329,9 +328,7 @@ class App extends Component {
                   blockedMovies={blockedMovies}
                   clickBlockBtn={this.clickBlockBtn}
                   clickLikeBtn={this.clickLikeBtn}
-                  sortByType={(sortType, order) =>
-                    this.sortByType(sortType, order)
-                  }
+                  sortByType={(sortType, order) => this.sortByType(sortType, order)}
                   goPre={this.goPre}
                   goNext={this.goNext}
                 />
