@@ -295,62 +295,64 @@ class App extends Component {
     const { page, pageMovie, allMovie, likedMovies, blockedMovies, sortBy, order } = this.state;
     console.log("page movie", pageMovie);
     return (
-      <Router>
-        <div className="goTop">
-          <a href="#top">
-            <i class="medium material-icons white-text waves-effect waves-light">arrow_upward</i>
-          </a>
-        </div>
-
-        <SideBarMenu
-          visible={this.state.visible}
-          handleHomeClick={(e) => this.handleHomeClick(e)}
-        />
-
-        <div className="container" id="top">
-          <div className="card-panel light-blue lighten-3 center">
-            <h3 id="title" onClick={(e) => this.handleHomeClick(e)}>
-              Movies List Menu
-            </h3>
-            <br />
-            <Switch>
-              <Route exact path="/">
-                <HomePage />
-              </Route>
-              <Route exact path="/movieslist">
-                <MovieList
-                  sortBy={sortBy}
-                  order={order}
-                  page={page}
-                  pageMovie={pageMovie}
-                  allMovie={allMovie}
-                  likedMovies={likedMovies}
-                  blockedMovies={blockedMovies}
-                  clickBlockBtn={this.clickBlockBtn}
-                  clickLikeBtn={this.clickLikeBtn}
-                  sortByType={(sortType, order) => this.sortByType(sortType, order)}
-                  goPre={this.goPre}
-                  goNext={this.goNext}
-                />
-              </Route>
-              <Route exact path="/likedlist">
-                <LikeList
-                  likedMovies={likedMovies}
-                  clickBlockBtn={this.clickBlockBtn}
-                  clickLikeBtn={this.clickLikeBtn}
-                />
-              </Route>
-              <Route exact path="/blockedlist">
-                <BlockList
-                  blockedMovies={blockedMovies}
-                  clickBlockDelete={this.clickBlockDelete}
-                  clickFav={this.clickFav}
-                />
-              </Route>
-            </Switch>
+      <React.Fragment>
+        <Router>
+          <div className="goTop">
+            <a href="#top">
+              <i class="medium material-icons white-text waves-effect waves-light">arrow_upward</i>
+            </a>
           </div>
-        </div>
-      </Router>
+
+          <SideBarMenu
+            visible={this.state.visible}
+            handleHomeClick={(e) => this.handleHomeClick(e)}
+          />
+
+          <div className="container" id="top">
+            <div className="card-panel light-blue lighten-3 center">
+              <h3 id="title" onClick={(e) => this.handleHomeClick(e)}>
+                Movies List Menu
+              </h3>
+              <br />
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/movieslist">
+                  <MovieList
+                    sortBy={sortBy}
+                    order={order}
+                    page={page}
+                    pageMovie={pageMovie}
+                    allMovie={allMovie}
+                    likedMovies={likedMovies}
+                    blockedMovies={blockedMovies}
+                    clickBlockBtn={this.clickBlockBtn}
+                    clickLikeBtn={this.clickLikeBtn}
+                    sortByType={(sortType, order) => this.sortByType(sortType, order)}
+                    goPre={this.goPre}
+                    goNext={this.goNext}
+                  />
+                </Route>
+                <Route exact path="/likedlist">
+                  <LikeList
+                    likedMovies={likedMovies}
+                    clickBlockBtn={this.clickBlockBtn}
+                    clickLikeBtn={this.clickLikeBtn}
+                  />
+                </Route>
+                <Route exact path="/blockedlist">
+                  <BlockList
+                    blockedMovies={blockedMovies}
+                    clickBlockDelete={this.clickBlockDelete}
+                    clickFav={this.clickFav}
+                  />
+                </Route>
+              </Switch>
+            </div>
+          </div>
+        </Router>
+      </React.Fragment>
     );
   }
 }
