@@ -19,17 +19,25 @@ class Menu extends Component {
           <div onClick={this.props.handleHomeClick}>
             <i className="small material-icons cyan-text">clear</i>
           </div>
-          <div className="menuItem" onClick={this.props.handleHomeClick}>
-            <Link to="/">Home Page</Link>
+          <div className="menuItem">
+            <Link to="/" onClick={this.props.handleHomeClick}>
+              Home Page
+            </Link>
           </div>
-          <div className="menuItem" onClick={this.props.handleHomeClick}>
-            <Link to="/movieslist">Movies</Link>
+          <div className="menuItem">
+            <Link to="/movieslist" onClick={this.props.handleHomeClick}>
+              Movies
+            </Link>
           </div>
-          <div className="menuItem" onClick={this.props.handleHomeClick}>
-            <Link to="/likedlist">Liked Movies</Link>
+          <div className="menuItem">
+            <Link to="/likedlist" onClick={this.props.handleHomeClick}>
+              Liked Movies
+            </Link>
           </div>
-          <div className="menuItem" onClick={this.props.handleHomeClick}>
-            <Link to="/blockedlist">Blocked Movies</Link>
+          <div className="menuItem">
+            <Link to="/blockedlist" onClick={this.props.handleHomeClick}>
+              Blocked Movies
+            </Link>
           </div>
         </div>
       </>
