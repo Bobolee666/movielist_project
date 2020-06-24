@@ -42,7 +42,10 @@
 #flyoutMenu a:hover {
   text-decoration: underline;
 }
-
+.menuContent {
+  display: flex;
+  flex-direction: column;
+}
 .menuItem {
   font-size: larger;
   font-weight: bold;
