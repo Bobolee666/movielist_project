@@ -19,9 +19,13 @@ export default function BlockedItem(props) {
           <div onClick={() => clickFav(movie.id)}>
             <i className="material-icons"> favorite_border </i>{" "}
           </div>{" "}
-          <i className="material-icons"> more_vert </i>{" "}
+          <i className="material-icons activator"> more_vert </i>{" "}
         </div>{" "}
-      </div>{" "}
+        <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">{movie.title}</span>
+          <p>{movie.description}</p>
+        </div>
+      </div>
     </Fragment>
   );
 }

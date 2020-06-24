@@ -16,12 +16,15 @@ export default function LikedItem(props) {
         <div className="card-content liked-card">
           <div onClick={() => clickLikeBtn(movie.id)}>
             <i className="material-icons">delete_sweep</i>
-
           </div>
           <div onClick={() => clickBlockBtn(movie.id)}>
             <i className="med material-icons">block</i>
           </div>
-          <i className="material-icons"> more_vert </i>
+          <i className=" activator material-icons">more_vert</i>
+        </div>
+        <div className="card-reveal">
+          <span className="card-title grey-text text-darken-4">{movie.title}</span>
+          <p>{movie.description}</p>
         </div>
       </div>
     </Fragment>

@@ -63,3 +63,35 @@ i.material-icons {
   left: 25vw;
   top: 2vh;
 }
+
+@media only screen and (max-width: 600px) {
+  #flyoutMenu {
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.5s;
+    -webkit-transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    -ms-transition: transform 0.5s;
+    -o-transition: transform 0.5s;
+  }
+  #flyoutMenu.hidden {
+    transform: translate3d(-100vw, 0, 0);
+    -webkit-transform: translate3d(-100vw, 0, 0);
+    -moz-transform: translate3d(-100vw, 0, 0);
+    -ms-transform: translate3d(-100vw, 0, 0);
+    -o-transform: translate3d(-100vw, 0, 0);
+  }
+
+  #flyoutMenu.visible {
+    transform: translate3d(0vw, 0, 0);
+    overflow: hidden;
+    -webkit-transform: translate3d(0vw, 0, 0);
+    -moz-transform: translate3d(0vw, 0, 0);
+    -ms-transform: translate3d(0vw, 0, 0);
+    -o-transform: translate3d(0vw, 0, 0);
+  }
+  i.material-icons {
+    left: 90vw;
+    top: 2vh;
+  }
+}

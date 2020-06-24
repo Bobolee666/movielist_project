@@ -12,7 +12,7 @@ export default function MovieItem(props) {
       </div>
       <div className="card-content">
         <span className="card-title activator grey-text text-darken-4">
-          {movie.title}{" "}
+          {movie.title}
           <i id="more_vert" className="material-icons right">
             more_vert
           </i>
@@ -41,10 +41,7 @@ export default function MovieItem(props) {
         </p>
       </div>
       <div className="card-reveal">
-        <span className="card-title grey-text text-darken-4">
-          {movie.title}
-          <i className="material-icons right">close</i>
-        </span>
+        <span className="card-title grey-text text-darken-4">{movie.title}</span>
         <p>{movie.description}</p>
       </div>
     </div>
