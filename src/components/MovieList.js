@@ -101,7 +101,7 @@ export default class MovieList extends Component {
           <a class="btn-floating btn-large waves-effect waves-light " onClick={this.props.goPre}>
             &lt;
           </a>
-          {" " + page + "/500"}
+          <h6>{"Page " + page + "/500"}</h6>
           <a class="btn-floating btn-large waves-effect waves-light " onClick={this.props.goNext}>
             &gt;
           </a>

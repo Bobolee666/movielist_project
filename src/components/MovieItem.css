@@ -25,3 +25,20 @@ i#more_vert.material-icons {
   top: 0;
   left: 0;
 }
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .card {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}

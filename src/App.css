@@ -38,3 +38,15 @@
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
 }
+
+@media only screen and (max-width: 768px) {
+  .goTop i.material-icons {
+    left: 90%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .goTop i.material-icons {
+    left: 80%;
+  }
+}
