@@ -6,10 +6,12 @@ import MovieList from "./components/MovieList";
 import SideBarMenu from "./components/SideBarMenu";
 import LikeList from "./components/LikeList";
 import BlockList from "./components/BlockList";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 class App extends Component {
   state = {
     visible: false,
+    loading: true,
     likedMovies: [],
     blockedMovies: [],
     allMovie: [],
@@ -109,23 +111,39 @@ class App extends Component {
     const { page, pageList, allMovie, sortBy, order } = this.state;
 
     if (pageList.includes(page)) {
-      console.log("这里是if， allmovie shi", allMovie);
+      // console.log("这里是if， allmovie shi", allMovie);
       this.setState({
         pageMovie: allMovie.slice((page - 1) * 10, 20 * page - 1),
       });
     } else {
-      fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8&language=en-US&sort_by=${sortBy}.${order}&include_adult=false&include_video=false&page=${page} `
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          const list = this.createItems(data.results);
-          this.setState({
-            pageList: [...pageList, page],
-            pageMovie: [...list],
-            allMovie: [...allMovie, ...list],
+      this.setState({ loading: true }, () => {
+        fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8&language=en-US&sort_by=${sortBy}.${order}&include_adult=false&include_video=false&page=${page} `
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            const list = this.createItems(data.results);
+            this.setState({
+              loading: false,
+              pageList: [...pageList, page],
+              pageMovie: [...list],
+              allMovie: [...allMovie, ...list],
+            });
           });
-        });
+      });
+
+      // fetch(
+      //   `https://api.themoviedb.org/3/discover/movie?api_key=87dabc6e2725920a54ec3b03e8f64cc8&language=en-US&sort_by=${sortBy}.${order}&include_adult=false&include_video=false&page=${page} `
+      // )
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     const list = this.createItems(data.results);
+      //     this.setState({
+      //       pageList: [...pageList, page],
+      //       pageMovie: [...list],
+      //       allMovie: [...allMovie, ...list],
+      //     });
+      //   });
     }
   };
 
@@ -292,14 +310,25 @@ class App extends Component {
   };
 
   render() {
-    const { page, pageMovie, allMovie, likedMovies, blockedMovies, sortBy, order } = this.state;
+    const {
+      loading,
+      page,
+      pageMovie,
+      allMovie,
+      likedMovies,
+      blockedMovies,
+      sortBy,
+      order,
+    } = this.state;
     console.log("page movie", pageMovie);
     return (
       <React.Fragment>
         <Router>
           <div className="goTop">
             <a href="#top">
-              <i class="medium material-icons white-text waves-effect waves-light">arrow_upward</i>
+              <i class="medium material-icons white-text waves-effect waves-light">
+                arrow_upward
+              </i>
             </a>
           </div>
 
@@ -319,20 +348,26 @@ class App extends Component {
                   <HomePage />
                 </Route>
                 <Route exact path="/movieslist">
-                  <MovieList
-                    sortBy={sortBy}
-                    order={order}
-                    page={page}
-                    pageMovie={pageMovie}
-                    allMovie={allMovie}
-                    likedMovies={likedMovies}
-                    blockedMovies={blockedMovies}
-                    clickBlockBtn={this.clickBlockBtn}
-                    clickLikeBtn={this.clickLikeBtn}
-                    sortByType={(sortType, order) => this.sortByType(sortType, order)}
-                    goPre={this.goPre}
-                    goNext={this.goNext}
-                  />
+                  {loading ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <MovieList
+                      sortBy={sortBy}
+                      order={order}
+                      page={page}
+                      pageMovie={pageMovie}
+                      allMovie={allMovie}
+                      likedMovies={likedMovies}
+                      blockedMovies={blockedMovies}
+                      clickBlockBtn={this.clickBlockBtn}
+                      clickLikeBtn={this.clickLikeBtn}
+                      sortByType={(sortType, order) =>
+                        this.sortByType(sortType, order)
+                      }
+                      goPre={this.goPre}
+                      goNext={this.goNext}
+                    />
+                  )}
                 </Route>
                 <Route exact path="/likedlist">
                   <LikeList
