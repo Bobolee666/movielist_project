@@ -17,7 +17,7 @@ export default function MovieItem(props) {
             more_vert
           </i>
         </span>
-        <p>
+        <div className="itemBtn">
           {movie.isLike === true ? (
             <a
               className="waves-effect waves-light btn-small"
@@ -38,7 +38,7 @@ export default function MovieItem(props) {
           <a className="waves-effect waves-light btn-small" onClick={() => clickBlockBtn(movie.id)}>
             <i className="material-icons left">block</i>block
           </a>
-        </p>
+        </div>
       </div>
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">{movie.title}</span>

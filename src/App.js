@@ -326,7 +326,7 @@ class App extends Component {
         <Router>
           <div className="goTop">
             <a href="#top">
-              <i class="medium material-icons white-text waves-effect waves-light">
+              <i className="medium material-icons white-text waves-effect waves-light">
                 arrow_upward
               </i>
             </a>
@@ -361,9 +361,7 @@ class App extends Component {
                       blockedMovies={blockedMovies}
                       clickBlockBtn={this.clickBlockBtn}
                       clickLikeBtn={this.clickLikeBtn}
-                      sortByType={(sortType, order) =>
-                        this.sortByType(sortType, order)
-                      }
+                      sortByType={(sortType, order) => this.sortByType(sortType, order)}
                       goPre={this.goPre}
                       goNext={this.goNext}
                     />
